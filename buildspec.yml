@@ -4,7 +4,7 @@ phases:
   install:
     commands:
       - echo Installing NGINX
-      - sudo amazon-linux-extras enable nginx
+      - sudo apt-get update 
       - sudo yum install -y nginx
   pre_build:
     commands:
