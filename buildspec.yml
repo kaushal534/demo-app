@@ -4,20 +4,27 @@ phases:
   install:
     commands:
       - echo Installing nginx
-      - sudo apt-get update 
+      - sudo apt-get update
       - sudo apt-get install -y nginx
   pre_build:
     commands:
+      - echo Validating nginx configuration
+      - sudo nginx -t
+      - echo Checking for port conflicts
+      - sudo lsof -i :80 || echo "No conflicts detected"
       - echo Starting nginx service
       - sudo systemctl start nginx
       - sudo systemctl enable nginx
   build:
     commands:
-      - echo Build started on `date`
-      - cp index.html /var/www/html/
+      - echo Build phase started on `date`
+      - echo Adding files to nginx root directory
+      - sudo cp index.html /var/www/html/
   post_build:
     commands:
-      - echo Configuring nginx
+      - echo Checking nginx service status
+      - sudo systemctl status nginx || sudo journalctl -u nginx
 artifacts:
   files:
-      - /var/www/html/index.html
+    - index.html
+
