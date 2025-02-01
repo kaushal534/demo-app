@@ -6,11 +6,11 @@ files:
 
 hooks:
   AfterInstall:
-    - location: scripts/install_nginx.sh
+    - location: demo-app/install_nginx.sh
       timeout: 300
       runas: root
 
   ApplicationStart:
-    - location: scripts/start_nginx.sh
+    - location: demo-app/start_nginx.sh
       timeout: 300
       runas: root
