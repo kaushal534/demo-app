@@ -28,7 +28,6 @@ phases:
       - echo Configuring NGINX
 artifacts:
   files:
-    - index.html
     - appspec.yml
     - scripts/**
     
